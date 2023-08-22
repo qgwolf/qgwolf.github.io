@@ -18,7 +18,7 @@
 <button onclick="aaa()">点击开启</button>
 
 <div id="list" style="display: flex;">
-  
+
 </div>
 <hr/>
 <video id="video" autoplay style="border: 1px solid"></video>
@@ -32,11 +32,11 @@
 
 <script>
     let count = 0
-    l
+
     const list = document.getElementById("list");
     mediaDevices.forEach(mediaDevice => {
         if (mediaDevice.kind === 'videoinput') {
-            list.innerHTML += `<button class="box">${摄像头 ${count++}}</button>`
+            list.innerHTML = list.innerHTML + `<button class="box">摄像头 - ${count++}</button>`
         }
     });
 
