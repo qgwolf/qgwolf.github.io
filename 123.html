@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+123213321
+<video id="video" autoplay style="width: 480px;height: 320px"></video>
+
+<canvas id="canvas" width="480" height="320"></canvas>
+
+<script src="vconsole.min.js"></script>
+<script>
+    // VConsole 默认会挂载到 `window.VConsole` 上
+    var vConsole = new window.VConsole();
+</script>
+
+<script>
+    var getUserMedia =
+        navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+    console.log("|1231232112312312312",navigator,getUserMedia)
+
+    function getUserMediaToPhoto(constraints, success, error) {
+
+        if (navigator.mediaDevices.getUserMedia) {
+            //最新标准API
+            navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
+        } else if (navigator.webkitGetUserMedia) {
+            //webkit核心浏览器
+            navigator.webkitGetUserMedia(constraints, success, error);
+        } else if (navigator.mozGetUserMedia) {
+            //firefox浏览器
+            navigator.mozGetUserMedia(constraints, success, error);
+        } else if (navigator.getUserMedia) {
+            //旧版API
+            navigator.getUserMedia(constraints, success, error);
+        }
+    }
+
+    console.log("12312312123",)
+    getUserMediaToPhoto({video: {width: 480, height: 320}, audio: true}, () => {
+
+        console.log("ok")
+    }, (e) => {
+        console.log(e)
+    });
+
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    // 将video画面描绘在canvas画布上
+    context.drawImage(video, 0, 0, 480, 320);
+
+
+</script>
+
+</body>
+</html>
