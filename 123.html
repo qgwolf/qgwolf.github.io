@@ -9,10 +9,10 @@
 </head>
 <body>
 
-123213321
-<video id="video" autoplay style="width: 480px;height: 320px"></video>
+<button>点击开启</button>
 
-<canvas id="canvas" width="480" height="320"></canvas>
+<video id="video" autoplay style="border: 1px solid"></video>
+
 
 <script src="vconsole.min.js"></script>
 <script>
@@ -21,40 +21,20 @@
 </script>
 
 <script>
-    var getUserMedia =
-        navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-
-    console.log("|1231232112312312312",navigator,getUserMedia)
-
-    function getUserMediaToPhoto(constraints, success, error) {
-
-        if (navigator.mediaDevices.getUserMedia) {
-            //最新标准API
-            navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
-        } else if (navigator.webkitGetUserMedia) {
-            //webkit核心浏览器
-            navigator.webkitGetUserMedia(constraints, success, error);
-        } else if (navigator.mozGetUserMedia) {
-            //firefox浏览器
-            navigator.mozGetUserMedia(constraints, success, error);
-        } else if (navigator.getUserMedia) {
-            //旧版API
-            navigator.getUserMedia(constraints, success, error);
-        }
+    const video = document.getElementById("video");
+    function onclick(){
+        window.navigator.getUserMedia({
+            video: true,
+            audio: false
+        }, function (stream) {
+            video.srcObject = stream;
+            video.play();
+        }, function (err) {
+            console.error("获取摄像头视频错误");
+        })
     }
 
-    console.log("12312312123",)
-    getUserMediaToPhoto({video: {width: 480, height: 320}, audio: true}, () => {
 
-        console.log("ok")
-    }, (e) => {
-        console.log(e)
-    });
-
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    // 将video画面描绘在canvas画布上
-    context.drawImage(video, 0, 0, 480, 320);
 
 
 </script>
