@@ -21,41 +21,56 @@
 
 </div>
 <hr/>
-<video id="video" autoplay style="border: 1px solid"></video>
+<video id="video" autoplay playsinline style="border: 1px solid"></video>
 
 
 <script src="vconsole.min.js"></script>
-<script>
-    // VConsole 默认会挂载到 `window.VConsole` 上
-    var vConsole = new window.VConsole();
-</script>
+
 
 <script>
     let count = 0
 
     const list = document.getElementById("list");
-    mediaDevices.forEach(mediaDevice => {
-        if (mediaDevice.kind === 'videoinput') {
-            list.innerHTML = list.innerHTML + `<button class="box">摄像头 - ${count++}</button>`
-        }
+    navigator.mediaDevices.enumerateDevices().then((mediaDevices) => {
+        mediaDevices.forEach(mediaDevice => {
+            if (mediaDevice.kind === 'videoinput') {
+                list.innerHTML = list.innerHTML + `<button class="box" data-value="${mediaDevice.deviceId}" onclick="aaa()">摄像头 - ${count++}</button>`
+            }
+        });
     });
 
 
     const video = document.getElementById("video");
 
-    function aaa() {
-        window.navigator.getUserMedia({
-            video: true,
+    let currentStream;
+
+    function aaa(box) {
+        const value = box.getAttribute("data-value");
+
+        if (currentStream) {
+            currentStream.getTracks().forEach(track => {
+                track.stop();
+            });
+        }
+
+        const constraints = {
+            video: {deviceId: {exact: value}},
             audio: false
-        }, function (stream) {
+        };
+
+        window.navigator.getUserMedia(constraints, function (stream) {
+            currentStream = stream;
             video.srcObject = stream;
-            video.play();
+
         }, function (err) {
             console.error("获取摄像头视频错误", err);
         })
     }
 
 
+</script>
+<script>
+    const vConsole = new window.VConsole();
 </script>
 
 </body>
