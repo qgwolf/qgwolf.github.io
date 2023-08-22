@@ -34,7 +34,7 @@
     navigator.mediaDevices.enumerateDevices().then((mediaDevices) => {
         mediaDevices.forEach(mediaDevice => {
             if (mediaDevice.kind === 'videoinput') {
-                list.innerHTML = list.innerHTML + `<button class="box" data-value="${mediaDevice.deviceId}" onclick="aaa()">摄像头 - ${count++}</button>`
+                list.innerHTML = list.innerHTML + `<button class="box" data-value="${mediaDevice.deviceId}" onclick="aaa(this)">摄像头 - ${count++}</button>`
             }
         });
     });
