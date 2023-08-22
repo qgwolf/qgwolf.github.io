@@ -6,11 +6,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .box {
+            border: 1px solid;
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
 
 <button onclick="aaa()">点击开启</button>
 
+<div id="list" style="display: flex;">
+  
+</div>
+<hr/>
 <video id="video" autoplay style="border: 1px solid"></video>
 
 
@@ -21,8 +31,19 @@
 </script>
 
 <script>
+    let count = 0
+    l
+    const list = document.getElementById("list");
+    mediaDevices.forEach(mediaDevice => {
+        if (mediaDevice.kind === 'videoinput') {
+            list.innerHTML += `<button class="box">${摄像头 ${count++}}</button>`
+        }
+    });
+
+
     const video = document.getElementById("video");
-    function aaa(){
+
+    function aaa() {
         window.navigator.getUserMedia({
             video: true,
             audio: false
@@ -30,11 +51,9 @@
             video.srcObject = stream;
             video.play();
         }, function (err) {
-            console.error("获取摄像头视频错误");
+            console.error("获取摄像头视频错误", err);
         })
     }
-
-
 
 
 </script>
