@@ -13,9 +13,10 @@
             height: 500px;
             max-width: 700px !important;
             overflow: auto;
+        
         }
 
-        thead {
+        #thead {
             background: lightgray;
             margin: 0;
             position: sticky;
@@ -23,7 +24,7 @@
         }
 
         table {
-           text-align: center;
+            text-align: center;
             border-color: inherit;
             border-collapse: collapse;
             border-spacing: 0;
@@ -36,6 +37,7 @@
             position: sticky;
             left: 0;
         }
+
         tr th:last-child, tr td:last-child {
             position: sticky;
             right: 0;
@@ -44,7 +46,7 @@
     </style>
 </head>
 <body>
-12321213213213321
+<p>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>
 <div class="container">
     <table>
         <colgroup>
@@ -57,8 +59,8 @@
             <col width="100">
             <col width="100">
         </colgroup>
-        <thead>
-        <tr>
+
+        <tr id="thead">
             <th colspan="1">
                 <div class="cursor-pointer select-none">ID</div>
             </th>
@@ -84,7 +86,7 @@
                 <div class="cursor-pointer select-none">Created At</div>
             </th>
         </tr>
-        </thead>
+
         <tbody>
         <tr>
             <td>15</td>
@@ -396,7 +398,7 @@
             <td>22</td>
             <td>2002/9/17 11:35:40</td>
         </tr>
-      
+
         </tbody>
     </table>
 </div>
